@@ -18,12 +18,10 @@ public class Ball : MonoBehaviour
             gameController.OnStopMove += StopMove;
         } 
     }
-    float verticalVelosity;
     bool MoveAvailable = false;
 
     void StartGame()
     {
-        verticalVelosity = gameController.GameSpeed;
         MainSprite.SetActive(false);
     }
     void StartMove()
@@ -60,13 +58,16 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        // по хорошему MVP нужно чтобы это было где-нибудь в презенторе - но тут одно событие ловлю ввод пользователя тут
+        
+        // для хорошего MVP нужно чтобы события обрабатывались где-нибудь в презенторе - но тут одно событие ловлю ввод пользователя тут
         if (!MoveAvailable) return;
+        
+
         if (Input.touchCount >0)
         {
-            this.transform.position += new Vector3(0, verticalVelosity * Time.deltaTime, 0); 
+            this.transform.position += new Vector3(0, gameController.vGameSpeed * Time.deltaTime, 0); 
         }
         else
-            this.transform.position += new Vector3(0, -verticalVelosity * Time.deltaTime, 0);
+            this.transform.position += new Vector3(0, -gameController.vGameSpeed * Time.deltaTime, 0);
     }
 }

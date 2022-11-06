@@ -10,8 +10,10 @@ public interface IGameController
     event UIGameAction OnEndGame;
 
     float GameSpeed { get; set; }
+    public float vGameSpeed { get; set; }
+    public float ElapsedGameTime { get; set; }
     void StartGame();
     void BallBursted();
     string GetGameStatistics();
-
+    public UnityEngine.Vector2Int FieldSize { get; set; }
 }

@@ -13,11 +13,6 @@ public class WallGenerator : MonoBehaviour
     Vector2Int fieldSize;
     private void Awake()
     {
-        // определим половину размера экрана в единицах Unity, прибавим по 2 тайла по горизонтали, чтобы генерились за пределами экрана
-        // по вертикали отнимем по тайлу чтобы, не попасть в камеру смартфона и закруленные углы экрана
-        Camera _camera = Camera.main;
-        Vector3 afieldSize = _camera.ViewportToWorldPoint(Vector2.one);
-        fieldSize = Vector2Int.RoundToInt(afieldSize) + new Vector2Int(2, -1);
         // цепляем события контроллера
         this.TryGetComponent<IGameController>(out gamecontroller);
         if (!(gamecontroller is IGameController))
@@ -31,6 +26,7 @@ public class WallGenerator : MonoBehaviour
 
     void StartGame()
     {
+        fieldSize = gamecontroller.FieldSize;
         TravelledDistance = 0;
         LastBarrierDistance = -1;
         for (int i = -fieldSize.x; i <= fieldSize.x; i++)
