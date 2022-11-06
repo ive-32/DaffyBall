@@ -9,6 +9,9 @@ public interface IGameController
     event UIGameAction OnPauseGame;
     event UIGameAction OnEndGame;
 
+    float GameSpeed { get; set; }
     void StartGame();
-    
+    void BallBursted();
+    string GetGameStatistics();
+
 }

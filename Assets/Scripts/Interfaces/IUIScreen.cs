@@ -1,4 +1,5 @@
 ﻿interface IUIScreen
 {
-    IGameController gameController { get; set; }
+    IGameController GameController { get; set; }
+    void SetText(string atext);
 }

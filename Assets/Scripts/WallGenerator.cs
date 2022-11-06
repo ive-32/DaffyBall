@@ -5,6 +5,7 @@ public class WallGenerator : MonoBehaviour
 
     public GameObject WallPrefab;
     public IGameController gamecontroller;
+    public GameObject WallsLayer;
     float TravelledDistance;
     int LastBarrierDistance;
     bool generatorEnabled;
@@ -25,6 +26,7 @@ public class WallGenerator : MonoBehaviour
         gamecontroller.OnStartGame += StartGame;
         gamecontroller.OnStartMove += StartGenerator;
         gamecontroller.OnStopMove += StopGenerator;
+        gamecontroller.OnEndGame += EndGame;
     }
 
     void StartGame()
@@ -33,46 +35,51 @@ public class WallGenerator : MonoBehaviour
         LastBarrierDistance = -1;
         for (int i = -fieldSize.x; i <= fieldSize.x; i++)
         {
-            Instantiate(WallPrefab, new Vector3(i, fieldSize.y, 0), Quaternion.identity, this.transform);
-            Instantiate(WallPrefab, new Vector3(i, -fieldSize.y, 0), Quaternion.identity, this.transform);
+            Instantiate(WallPrefab, new Vector3(i, fieldSize.y, 0), Quaternion.identity, WallsLayer.transform);
+            Instantiate(WallPrefab, new Vector3(i, -fieldSize.y, 0), Quaternion.identity, WallsLayer.transform);
         }
         generatorEnabled = false;
+    }
+    void EndGame()
+    {
+        generatorEnabled = false;
+        foreach(Transform child in WallsLayer.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     void StartGenerator() => generatorEnabled = true;
     void StopGenerator() => generatorEnabled = false;
 
     void SetNewBarrier()
-    {
+    {   // ставим новый барьер 
+        // высота 20% - 65% от высоты поля 
         LastBarrierDistance = Mathf.FloorToInt(TravelledDistance);
-        int height = Mathf.RoundToInt(Random.Range(fieldSize.y * 0.2f, fieldSize.y * 1.3f));
+        int height = Mathf.RoundToInt(Random.Range(fieldSize.y * 0.4f, fieldSize.y * 1.3f));
         int IsTopOrBottom = Random.Range(0,100) <50 ? 1: -1;
         for (int i = 1; i <= height; i++ )
         {
             Vector3 BarrierTilePos = new Vector3(fieldSize.x, (-fieldSize.y + i) * IsTopOrBottom, 0);
-            Instantiate(WallPrefab, BarrierTilePos, Quaternion.identity, this.transform);
+            Instantiate(WallPrefab, BarrierTilePos, Quaternion.identity, WallsLayer.transform);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!generatorEnabled) return;
-        float gameSpeed = 1f;
-        int BarrierDistance = 4; // fieldSize.x + 2;
+        float gameSpeed = gamecontroller.GameSpeed;
+        int BarrierDistance = fieldSize.x / 2; // частота препятствий - четверть ширины поля 
         TravelledDistance += gameSpeed *Time.deltaTime;
-        foreach (Transform wall in this.transform)
+        foreach (Transform wall in WallsLayer.transform)
         {
             // скроллим
             wall.position -= new Vector3(gameSpeed * Time.deltaTime, 0, 0);
-            // уехавшие стенки переставляем, заодно считаем сколько проехали
+            // уехавшие стенки переставляем
             if ( wall.position.x < -fieldSize.x)
             {
                 if (wall.position.y == fieldSize.y || wall.position.y == -fieldSize.y)
-                {
                     wall.position = new Vector3(fieldSize.x, wall.position.y, 0);
-                    
-                }
                 else
                     Destroy(wall.gameObject);
             }

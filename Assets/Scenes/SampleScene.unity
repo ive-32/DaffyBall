@@ -182,6 +182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartScreenPrefab: {fileID: 113768347518531949, guid: 718e8c35fbfc3104dbc59bb5f2f680eb, type: 3}
+  GameOverScreenPrefab: {fileID: 113768347518531949, guid: a4963ca11fe6e9e4398262fa36e22593, type: 3}
+  BallPrefab: {fileID: 2205450343941236334, guid: 9da38f68e2a9ba347bc3d2ef99738f05, type: 3}
+  SplashTextPrefab: {fileID: 6328052139481214798, guid: 934d8c851feacca4e99b4a3af35b2028, type: 3}
+  UILayer: {fileID: 2029239445}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +414,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

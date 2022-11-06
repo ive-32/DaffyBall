@@ -57,10 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\WallGenerator.cs" />
+    <Compile Include="Assets\Scripts\Ball.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IUIScreen.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IGameController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\UIScreensScript\StartScreen.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IUIScreen.cs" />
+    <Compile Include="Assets\Scripts\UIScreensScript\GameOverScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
