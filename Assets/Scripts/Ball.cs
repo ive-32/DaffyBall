@@ -63,7 +63,7 @@ public class Ball : MonoBehaviour
         if (!MoveAvailable) return;
         
 
-        if (Input.touchCount >0)
+        if (Input.touchCount >0 || Input.GetKey(KeyCode.UpArrow))
         {
             this.transform.position += new Vector3(0, gameController.vGameSpeed * Time.deltaTime, 0); 
         }
