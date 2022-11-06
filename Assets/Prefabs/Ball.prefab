@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3804165177777633747}
   - component: {fileID: 7204787539594280118}
   - component: {fileID: 3312631480565629883}
+  - component: {fileID: 6072548143240277695}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -84,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b2d27d82afea941bad5b773d87bd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainSprite: {fileID: 3864333653203670444}
   BurstTextures:
   - {fileID: 640226734, guid: 56a75667cbb375746afce0ce7dd27099, type: 3}
   - {fileID: -1194096200, guid: 56a75667cbb375746afce0ce7dd27099, type: 3}
@@ -94,7 +96,22 @@ MonoBehaviour:
   - {fileID: 1624567797, guid: 56a75667cbb375746afce0ce7dd27099, type: 3}
   - {fileID: -938723539, guid: 56a75667cbb375746afce0ce7dd27099, type: 3}
   - {fileID: 2133790625, guid: 56a75667cbb375746afce0ce7dd27099, type: 3}
-  MainSprite: {fileID: 3864333653203670444}
+--- !u!111 &6072548143240277695
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205450343941236334}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 78973f18a96ec3048b9a5620979b749b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 78973f18a96ec3048b9a5620979b749b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3864333653203670444
 GameObject:
   m_ObjectHideFlags: 0

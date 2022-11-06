@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour, IGameController
     public void StartGame()
     {   // стартуем игру 
         // создаем шарик запускаем обратный отсчет
-        GameObject _ballObject = Instantiate(BallPrefab, new Vector3(- FieldSize.x / 2,  0, 0), Quaternion.identity);
+        GameObject _ballObject = Instantiate(BallPrefab, new Vector3(- FieldSize.x / 3,  0, 0), Quaternion.identity);
         _ballObject.TryGetComponent<Ball>(out ball);
         if (ball == null)
             throw new System.Exception("BallPrefab not contains class Ball");
